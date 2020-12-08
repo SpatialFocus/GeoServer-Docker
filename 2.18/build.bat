@@ -7,7 +7,7 @@ if not exist .\resources\NUL mkdir .\resources
 if not exist .\resources\plugins\NUL mkdir .\resources\plugins
 
 SET plugins=control-flow,inspire,monitor,css,ysld,sldservice,web-resource,imagemosaic-jdbc,csw
- 
+
 rem Download plugins from list above.  Modify list as required
 rem works for windows 10 powershell
 
