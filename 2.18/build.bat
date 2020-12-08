@@ -1,12 +1,12 @@
 @Echo off
 
-SET GS_VERSION=2.16.3
+SET GS_VERSION=2.18.1
 
 rem Create plugins folder if does not exist
 if not exist .\resources\NUL mkdir .\resources
 if not exist .\resources\plugins\NUL mkdir .\resources\plugins
 
-SET plugins=control-flow,inspire,monitor,css,ysld,sldservice
+SET plugins=control-flow,inspire,monitor,css,ysld,sldservice,web-resource,imagemosaic-jdbc,csw
  
 rem Download plugins from list above.  Modify list as required
 rem works for windows 10 powershell
@@ -16,9 +16,9 @@ for %%f in (%plugins%) do (
 	@ECHO geoserver-%%f-plugin downloaded.
 )
 
-rem build options include:
+rem Build options include:
 rem    TOMCAT_EXTRAS  [true | false]
-rem    DISABLE_GWC    [true | false]  - default false; no longer recommended since 2.9
 rem    GDAL_NATIVE    [true | false]  - default false; build with GDAL support
+rem    GS_VERSION                     - specifies which version of geoserver is to be built
 
-docker build --build-arg TOMCAT_EXTRAS=false -t thinkwhere/geoserver:%GS_VERSION% .
+docker build --build-arg GS_VERSION=%GS_VERSION% --build-arg TOMCAT_EXTRAS=false --build-arg GDAL_NATIVE=true -t focus.azurecr.io/geoserver:%GS_VERSION% .
